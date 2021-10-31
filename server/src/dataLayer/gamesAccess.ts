@@ -1,4 +1,6 @@
 import * as AWS from 'aws-sdk';
+import * as uuid from 'uuid';
+
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
 
 import { GameItem } from 'src/models/GameItem';
@@ -20,7 +22,7 @@ export const dynamoDB = new AWS.DynamoDB.DocumentClient({
 export async function getAllGames(isPremium: boolean): Promise<GameItem[]>{
     try{
         const result = await dynamoDB.scan({
-            TableName: c.games_table || '',
+            TableName: c.games_table,
             FilterExpression: 'isPremium = :isPremium',
             ExpressionAttributeValues: {
                 ':isPremium': isPremium
@@ -30,8 +32,38 @@ export async function getAllGames(isPremium: boolean): Promise<GameItem[]>{
         return items as GameItem[];
     }catch(err){
         console.error(err)
+        return []
     }
     
-    return []
+}
+
+export async function createGame(game: GameItem): Promise<GameItem>{
+
+    const gameId = uuid.v4();
+    const version = "1"
+
+    const gameRequest = {
+        gameId,
+        ...game,
+        version
+    }
+
+    await dynamoDB.put({
+        TableName: c.games_table,
+        Item: gameRequest
+    }).promise();
+
+    return gameRequest
+}
+
+export async function deleteGame(gameId: string): Promise<AWS.DynamoDB.AttributeMap | undefined>{
+
+    const result = await dynamoDB.delete({
+        TableName: c.games_table || '',
+        Key:{
+            gameId
+        }
+    }).promise()
     
+    return result.Attributes;
 }
