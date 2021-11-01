@@ -56,14 +56,17 @@ export async function createGame(game: GameItem): Promise<GameItem>{
     return gameRequest
 }
 
-export async function deleteGame(gameId: string): Promise<AWS.DynamoDB.AttributeMap | undefined>{
+export async function deleteGame(gameId: string): Promise<AWS.DynamoDB.AttributeMap>{
+
+
 
     const result = await dynamoDB.delete({
         TableName: c.games_table || '',
         Key:{
             gameId
-        }
+        },
+        ReturnValues: 'ALL_OLD'
     }).promise()
-    
+
     return result.Attributes;
 }
