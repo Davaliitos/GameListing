@@ -16,15 +16,17 @@ router.get('/', async( req: Request, res: Response) => {
         games.forEach(game => {
             if(game.images){
                 game.images.forEach(image => {
-                    try{
-                        image.url = AWS.getGetSignedUrl(image.url);
-                    }catch(err){
-                        console.log(err)
+                    if(image.url){
+                        try{
+                            image.url = AWS.getGetSignedUrl(image.url);
+                        }catch(err){
+                            console.log(err)
+                        }
                     }
                 })
             }
         })
-        res.send(games)
+        res.send(JSON.stringify({games}))
     }catch(err){
         res.status(400).send({
             error: err
@@ -65,7 +67,7 @@ router.post('/', async(req: Request, res: Response) => {
 router.delete('/:gameId', async(req: Request, res: Response) => {
     const { gameId } = req.params;
     try{
-        const answer = await deleteGame(gameId)
+        const answer = await deleteGame(gameId);
         if(answer){
             res.send(answer);
         }else{
@@ -82,8 +84,20 @@ router.delete('/:gameId', async(req: Request, res: Response) => {
 //Get a signed url to put a new item in the bucket
 router.get('/signed-url/:fileName', async(req: Request, res: Response) => {
     let { fileName } = req.params;
-    const url = AWS.getPutSignedUrl(fileName);
-    res.status(201).send({url: url})
+    if(!fileName){
+        return res.status(400).send({
+            message: 'FileName is required'
+        })
+    }
+    try{
+        const url = AWS.getPutSignedUrl(fileName);
+        return res.status(201).send({url: url})
+    }catch(err){
+        return res.status(500).send({
+            error: err
+        })
+    }
+    
 })
 
 export const GamesRouter: Router = router;
