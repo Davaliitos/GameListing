@@ -5,7 +5,8 @@ const styles = () => ({
         margin : '0 auto',
         maxWidth: 800,
         paddingLeft: 10,
-        paddingRight: 10
+        paddingRight: 10,
+        width: '100%'
     }
 })
 
