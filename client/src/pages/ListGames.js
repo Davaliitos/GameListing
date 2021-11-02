@@ -28,6 +28,14 @@ const styles = () => ({
     }
 })
 
+const imageTypes= [
+    'Unset',
+    'Background',
+    'Featured',
+    'Logo',
+    'Icon'
+]
+
 
 const ListGames = props => {
 
@@ -38,8 +46,12 @@ const ListGames = props => {
         deleteGame
     } = props;
 
+
+
     const tableBody = useMemo(() => {
         return games?.map(game => {
+
+            const {images} = game;
 
             return <tr key={game.gameId}>
                 <td className={classes.firstColumn}>
@@ -51,9 +63,9 @@ const ListGames = props => {
                 </td>
                 <td>
                     {
-                        game.images && game.images[0] && (
+                        images && images[0] && (
                             <img
-                                src={game.images[0]?.url}
+                                src={images[0]?.url}
                                 className={classes.image}
                                 alt='test'
                             />
@@ -65,6 +77,9 @@ const ListGames = props => {
                 <td>{game.category}</td>
                 <td>{game.description}</td>
                 <td>{game.author}</td>
+                <td>{
+                    images && images[0] && imageTypes[images[0].type]
+                }</td>
                 <td>{game.duration}</td>
                 <td>{game.isDownloadable && <span>✓</span>}</td>
                 <td>{game.isStreamable && <span>✓</span>}</td>
@@ -88,6 +103,7 @@ const ListGames = props => {
                             <th>Category</th>
                             <th style={{width: '200px'}}>Description</th>
                             <th>Author</th>
+                            <td>Image Type</td>
                             <th>Duration</th>
                             <th>Is Downloadable</th>
                             <th>Is Streamable</th>

@@ -18,6 +18,6 @@ export interface GameItem {
     duration: number,
     isDownloadable: boolean,
     isStreamable: boolean,
-    version: string,
+    version: number,
     isPremium: boolean
 }

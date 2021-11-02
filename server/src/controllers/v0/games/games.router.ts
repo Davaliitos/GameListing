@@ -26,7 +26,7 @@ router.get('/', async( req: Request, res: Response) => {
                 })
             }
         })
-        res.send(JSON.stringify({games}))
+        res.send(JSON.stringify({listings: games}))
     }catch(err){
         res.status(400).send({
             error: err
@@ -40,21 +40,40 @@ router.get('/', async( req: Request, res: Response) => {
 router.post('/', async(req: Request, res: Response) => {
 
     try{
-        const { title, fileName} = req.body;
-        const newGame: GameItem = req.body;
+        const{
+            title,
+            subtitle,
+            category,
+            description,
+            author,
+            duration,
+            isDownloadable,
+            isStreamable,
+            images,
+            tags,
+            replayBundleUrlJson,
+            isPremium
+        } = req.body as GameItem;
         
-        if(!title){
+        if(!title || !subtitle || !category || !images){
             return res.status(400).send({
-                message: 'Title is required'
+                message: 'Bad Request'
             })
         }
-
-        if(!fileName){
-            return res.status(400).send({
-                message: 'FileName is required'
-            })
-        }
-        const game = await createGame(newGame);
+        const game = await createGame({
+            title,
+            subtitle,
+            category,
+            description,
+            author,
+            duration,
+            isDownloadable,
+            isStreamable,
+            images,
+            tags,
+            replayBundleUrlJson,
+            isPremium
+        } as GameItem);
         res.send(game)
     }catch(err){
         res.status(400).send({
