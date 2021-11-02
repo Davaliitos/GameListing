@@ -9,10 +9,11 @@ import { configuration } from '../config/config';
 
 const c = configuration.dev;
 
-if(c.aws_profile !== 'DEPLOYED'){
-    const credentials = new AWS.SharedIniFileCredentials({profile: c.aws_profile});
-    AWS.config.credentials = credentials;
-}
+const credentials = new AWS.Credentials({
+    accessKeyId: c.aws_access_key_id,
+    secretAccessKey: c.aws_secret_access_key
+});
+AWS.config.credentials = credentials;
 
 export const dynamoDB = new AWS.DynamoDB.DocumentClient({
     region: c.aws_region
