@@ -5,10 +5,10 @@ async function httpGetGames(){
     try{
         const response = await fetch(`${API_URL}/games`);
         const gamesJSON = await response.json();
-        return gamesJSON.games;
+        return gamesJSON.listings;
     }catch(err){
-        console.log(err)
-        return {}
+        console.error(err)
+        return []
     }
     
 }
@@ -43,7 +43,7 @@ async function httpCreateGame(game){
     const images = [{
         id: 1,
         url: fileName,
-        type: 'image/jpeg'
+        type: Number(game.imageType)
     }]
 
     game.images = images

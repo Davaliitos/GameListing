@@ -28,6 +28,16 @@ const CreateGame = props => {
             <input type="text" id="author" name="author" onChange={formik.handleChange}/>
             <label htmlFor="image">Image</label>
             <input type="file" id="image" name="image" onChange={(event) => formik.setFieldValue('image', event.target.files[0])} accept="image/png,image/jpeg"/>
+            <label htmlFor="imageType">Image Type</label>
+            <select id="imageType" name="imageType" onChange={(event) => {
+                return formik.setFieldValue('imageType',event.target.value)
+            }}>
+                <option value="0">Unset</option>
+                <option value="1" selected>Background</option>
+                <option value="2">Featured</option>
+                <option value="3">Logo</option>
+                <option value="4">Icon</option>
+            </select>
             <label htmlFor="duration">Duration</label>
             <input type="number" id="duration" name="duration" onChange={formik.handleChange}/>
             <label htmlFor="isDownloadable">Is Downloadable</label>
@@ -65,6 +75,7 @@ function initialValues(){
         description: '',
         author: '',
         image: undefined,
+        imageType : 1,
         duration: 0,
         isDownloadable: false,
         isStreamable: false,

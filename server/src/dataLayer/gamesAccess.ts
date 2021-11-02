@@ -40,7 +40,7 @@ export async function getAllGames(isPremium: boolean): Promise<GameItem[]>{
 export async function createGame(game: GameItem): Promise<GameItem>{
 
     const gameId = uuid.v4();
-    const version = "1"
+    const version = 1;
 
     const gameRequest = {
         gameId,
