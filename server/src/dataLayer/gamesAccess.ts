@@ -23,11 +23,7 @@ export const dynamoDB = new AWS.DynamoDB.DocumentClient({
 export async function getAllGames(isPremium: boolean): Promise<GameItem[]>{
     try{
         const result = await dynamoDB.scan({
-            TableName: c.games_table,
-            FilterExpression: 'isPremium = :isPremium',
-            ExpressionAttributeValues: {
-                ':isPremium': isPremium
-            }
+            TableName: c.games_table
         }).promise();
         const items = result.Items;
         return items as GameItem[];

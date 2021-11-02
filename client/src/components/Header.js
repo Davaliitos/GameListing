@@ -39,7 +39,9 @@ const styles = theme => ({
     },
     link: {
         color: theme.color.content,
-        textDecoration: 'none'
+        textDecoration: 'none',
+        display: 'flex',
+        alignItems: 'center'
     },
     button: {
         padding: [0, theme.padding / 2]

@@ -15,7 +15,7 @@ const CreateGame = props => {
     
     return <Appear animate show={props.entered}>
         <Paragraph>Create a Game</Paragraph>
-        <form onSubmit={formik.handleSubmit} style={{display: 'inline-grid', gridTemplateColumns: 'auto auto', gridGap: '10px 20px'}}>
+        <form onSubmit={formik.handleSubmit} style={{display: 'inline-grid', gridTemplateColumns: 'auto auto', gridGap: '10px 20px', 'max-width': '450px'}}>
             <label htmlFor="title">Title</label>
             <input type="text" id="title" name="title" onChange={formik.handleChange}/>
             <label htmlFor="subtitle">Subtitle</label>
