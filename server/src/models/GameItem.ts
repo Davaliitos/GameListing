@@ -6,18 +6,16 @@ interface Image {
 
 
 export interface GameItem {
+    gameId: string,
     category: string,
     title: string,
     subtitle: string,
     description: string,
     images: Image[],
-    type: number,
     tags: string[],
     author: string,
-    replayBundleUrlJson: string,
     duration: number,
     isDownloadable: boolean,
     isStreamable: boolean,
-    version: number,
     isPremium: boolean
 }

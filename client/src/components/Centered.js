@@ -3,9 +3,16 @@ import { withStyles } from 'arwes';
 const styles = () => ({
     root: {
         margin : '0 auto',
-        maxWidth: 800,
-        paddingLeft: 10,
-        paddingRight: 10
+        paddingLeft: 40,
+        paddingRight: 40,
+        width: 'fit-content',
+        maxWidth: '100%'
+    },
+    '@media (max-width: 800px)': {
+        root:{
+            paddingLeft: 20,
+            paddingRight: 20,
+        }
     }
 })
 

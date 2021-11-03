@@ -1,18 +1,17 @@
 import * as AWS from 'aws-sdk';
 import * as uuid from 'uuid';
 
-import { DocumentClient } from 'aws-sdk/clients/dynamodb';
-
 import { GameItem } from 'src/models/GameItem';
 
 import { configuration } from '../config/config';
 
 const c = configuration.dev;
 
-if(c.aws_profile !== 'DEPLOYED'){
-    const credentials = new AWS.SharedIniFileCredentials({profile: c.aws_profile});
-    AWS.config.credentials = credentials;
-}
+const credentials = new AWS.Credentials({
+    accessKeyId: c.aws_access_key_id,
+    secretAccessKey: c.aws_secret_access_key
+});
+AWS.config.credentials = credentials;
 
 export const dynamoDB = new AWS.DynamoDB.DocumentClient({
     region: c.aws_region
@@ -22,11 +21,7 @@ export const dynamoDB = new AWS.DynamoDB.DocumentClient({
 export async function getAllGames(isPremium: boolean): Promise<GameItem[]>{
     try{
         const result = await dynamoDB.scan({
-            TableName: c.games_table,
-            FilterExpression: 'isPremium = :isPremium',
-            ExpressionAttributeValues: {
-                ':isPremium': isPremium
-            }
+            TableName: c.games_table
         }).promise();
         const items = result.Items;
         return items as GameItem[];

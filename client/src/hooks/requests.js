@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000/api/v0'
+const API_URL = 'api/v0';
 
 //Load games and return as JSON
 async function httpGetGames(){

@@ -46,7 +46,7 @@ const AppLayout = props => {
             <Frame animate
                 show={frameVisible}
                 corners={4}
-                style={{visibility: frameVisible ? "visible" : "hidden"}}
+                style={{visibility: frameVisible ? 'visible' : 'hidden' }}
             >
                 {
                     anim => (
