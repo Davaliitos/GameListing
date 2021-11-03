@@ -36,7 +36,9 @@ async function httpCreateGame(game){
                 body: game.image
             })
         }catch(err){
-            console.log()
+            return {
+                ok: false
+            }
         }
         
     }else{

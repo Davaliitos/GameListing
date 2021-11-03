@@ -2,9 +2,22 @@
 
 Unity Games Listing allows users to register and create games
 
-The project is split into two parts:
-1. Frontend - React web application
-2. Backend RESTful API - Node-Express application
+## Setting up the REST API server
+
+1. Clone this repository locally.
+
+2. Install dependencies using 
+
+```bash
+npm install
+```
+
+3. Start your app using
+
+```bash
+npm run dev
+```
+
 
 # Functionality of the application
 
@@ -100,8 +113,3 @@ Returns a JSON object that looks like this:
   "url": "https://s3-bucket-name.s3.eu-west-2.amazonaws.com/image.png"
 }
 ```
-
-# Frontend
-
-The `client` folder contains a web application that can connect to the API.
-
