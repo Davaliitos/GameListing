@@ -70,7 +70,7 @@ After a little bit of research and testing, I was able to show the images of the
 
 The only thing missing was the category title.
 
-I noticed that on the `UICarousel.Init("category should be here", listings);` I decided to organize the game listing by category, and created one caroussel per category. I decided to create the carousels the same way you created the panels.
+I noticed the method `UICarousel.Init("category should be here", listings);` and  that's when I decided to organize the game listing by category, and created one caroussel per category. I decided to create the carousels the same way you created the panels.
 
 
 # Conclusion
