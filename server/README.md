@@ -4,7 +4,7 @@ Unity Games Listing allows users to register and create games
 
 ### Prerequisite
 1. The depends on the Node Package Manager (NPM). You will need to download and install Node from [https://nodejs.com/en/download](https://nodejs.org/en/download/). This will allow you to be able to run `npm` commands.
-2. Environment variables will need to be set. These environment variables include database connection details that should not be hard-coded into the application code.
+2. Environment variables will need to be set. These environment variables include the database connection details.
 
 ## Setting up the REST API server
 
