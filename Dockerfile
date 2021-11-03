@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install -g typescript ts-node
+RUN npm install -g typescript
 
 COPY client/package*.json client/
 RUN npm run install-client --only=production
