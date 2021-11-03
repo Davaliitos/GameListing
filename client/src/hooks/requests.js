@@ -27,13 +27,18 @@ async function httpCreateGame(game){
     const fileName = game.image.name;
     const signedUrl = await getSignedUrl(fileName);
     if(signedUrl){
-        await fetch(signedUrl, {
-            method: 'put',
-            headers: {
-                'Content-Type': 'image/jpeg'
-            },
-            body: game.image
-        })
+        try{
+            await fetch(signedUrl, {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'image/jpeg'
+                },
+                body: game.image
+            })
+        }catch(err){
+            console.log()
+        }
+        
     }else{
         return {
             ok: false
