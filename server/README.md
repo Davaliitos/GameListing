@@ -42,9 +42,9 @@ The application stores GameItems, each GameItem contains the following fields:
 * `isStreamable` (boolean) - true if the game can be streamed
 * `isPremium` (boolean) - true if the game belongs to the premium service
 * `images` (array) - array of image objects
--  * `id` (string) - an id for an image
--  * `url` (string) - the signed url of the image stored on an S3 Bucket
--  * `type` (number) - the image type, used by the Unity Web project
+  * `id` (string) - an id for an image
+  * `url` (string) - the signed url of the image stored on an S3 Bucket
+  * `type` (number) - the image type, used by the Unity Web project
 
 # Implemented Functions
 
