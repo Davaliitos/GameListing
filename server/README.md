@@ -106,7 +106,7 @@ It should return a new GameItem with the image signed url
 
 * `DeleteTodo` - deletes a TODO item created by a current user. Expects an id of a TODO item to remove.
 
-Returns an empty body
+Returns the deleted GameItem
 
 * `SignedUrl` - returns a pre-signed URL that can be used to upload an image file for a Game item.
 
