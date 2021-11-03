@@ -1,8 +1,6 @@
 import * as AWS from 'aws-sdk';
 import * as uuid from 'uuid';
 
-import { DocumentClient } from 'aws-sdk/clients/dynamodb';
-
 import { GameItem } from 'src/models/GameItem';
 
 import { configuration } from '../config/config';

@@ -51,7 +51,6 @@ router.post('/', async(req: Request, res: Response) => {
             isStreamable,
             images,
             tags,
-            replayBundleUrlJson,
             isPremium
         } = req.body as GameItem;
         
@@ -71,12 +70,11 @@ router.post('/', async(req: Request, res: Response) => {
             isStreamable,
             images,
             tags,
-            replayBundleUrlJson,
             isPremium
         } as GameItem);
-        res.send(game)
+        res.status(201).send(game)
     }catch(err){
-        res.status(400).send({
+        res.status(500).send({
             error: err
         });
     }
@@ -103,6 +101,8 @@ router.delete('/:gameId', async(req: Request, res: Response) => {
 //Get a signed url to put a new item in the bucket
 router.get('/signed-url/:fileName', async(req: Request, res: Response) => {
     let { fileName } = req.params;
+
+    console.log('signed url filename', fileName)
     if(!fileName){
         return res.status(400).send({
             message: 'FileName is required'
